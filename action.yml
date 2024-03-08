@@ -1,16 +1,33 @@
-# action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'quevee'
+description: 'QUality-EVEnt Engine for collecting quality-related build and release artifacts'
+branding:
+  icon: 'award'
+  color: 'green'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
+  release_url:
+    description: 'URL of the release this manifest refers to'
+    required: false
+  artifacts_documentation:
+    description: 'Comma-separated list of documentation artifacts'
+    required: false
+  artifacts_readme:
+    description: 'Comma-separated list of URLs of readme files'
+    required: false
+  artifacts_requirements:
+    description: 'Comma-separated list of URL of requirement files'
+    required: false
+  artifacts_testing:
+    description: 'Comma-separated list of URL of test results'
+    required: false
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  manifest_file:
+    description: 'Process artifacts manifest'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.release_url }}
+    - ${{ inputs.artifacts_documentation }}
+    - ${{ inputs.artifacts_readme }}
+    - ${{ inputs.artifacts_requirements }}
+    - ${{ inputs.artifacts_testing }}
