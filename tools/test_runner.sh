@@ -11,4 +11,4 @@ export INPUT_ARTIFACTS_README="https://some.example.url,https://other.example.ur
 export INPUT_ARTIFACTS_REQUIREMENTS="./Another/URL,https://yet.another.org/example/artifact.bz2"
 export INPUT_ARTIFACTS_DOCUMENTATION="./doc/url,https://another.doc.com/example/docs.zip"
 
-./entrypoint.sh
+./manifest-toml.sh

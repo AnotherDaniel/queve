@@ -54,7 +54,7 @@ validate_url() {
     local regex="^(http|https)://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(:[0-9]+)?(/[a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~]*)?$"
 
     if [[ ! $url =~ $regex ]]; then
-        echo "Invalid URL: $url"
+        echo "Invalid URL: $url" >&2
     fi
 }
 
