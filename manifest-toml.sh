@@ -43,7 +43,6 @@ generate_toml_section() {
         cat <<EOF
 [$section]
 $temp_output
-
 EOF
     fi
 }
