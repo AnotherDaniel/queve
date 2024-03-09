@@ -8,20 +8,20 @@ inputs:
     description: 'URL of the release this manifest refers to'
     required: false
   artifacts_documentation:
-    description: 'Comma-separated list of documentation artifacts'
+    description: 'Comma-separated list of URLs of documentation artifacts'
     required: false
   artifacts_readme:
     description: 'Comma-separated list of URLs of readme files'
     required: false
   artifacts_requirements:
-    description: 'Comma-separated list of URL of requirement files'
+    description: 'Comma-separated list of URLs of requirement files'
     required: false
   artifacts_testing:
-    description: 'Comma-separated list of URL of test results'
+    description: 'Comma-separated list of URLs of test results'
     required: false
 outputs:
   manifest_file:
-    description: 'Process artifacts manifest'
+    description: 'Process artifacts manifest file name'
 runs:
   using: 'docker'
   image: 'Dockerfile'
