@@ -36,7 +36,7 @@ Conceptually, this is how queve is used:
 
 ```yaml
 - name: Collect quality artifacts
-  uses: actions/queve@v0.1
+  uses: anotherdaniel/queve@v0.1
   with:
     artifacts_readme: <readme-url>
     artifacts_requirements: <req-url1>,<req-url2>
@@ -95,7 +95,7 @@ jobs:
 
       # Collection quality artifacts
       - name: Collect quality artifacts
-        uses: actions/queve@v1
+        uses: anotherdaniel/queve@v0.1
         id: queve
         with:
           release_url: ${{ steps.create_release.outputs.url }}
