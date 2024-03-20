@@ -1,5 +1,5 @@
-name: 'queve'
-description: 'QUality-EVent Engine for collecting quality-related build and release artifacts'
+name: 'quevee'
+description: 'QUality-EVEnt Engine for collecting quality-related build and release artifacts'
 branding:
   icon: 'award'
   color: 'green'

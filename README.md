@@ -1,4 +1,4 @@
-# QUality EVent Engine (queve) github action
+# QUality EVEnt Engine (quevee) github action
 
 This action accepts a set of input URLs pointing to release artifacts of various categories (like 'documentation' or 'testing'), and creates a toml file that contains project and release metadata as well as the artifact URLs. The goal is to document release artifacts that are relevant for assessment of project quality aspects, and present them for evaluation and archival in quality assessment processes.
 
@@ -32,11 +32,11 @@ Process artifacts manifest file name.
 
 ## Simple example
 
-Conceptually, this is how queve is used:
+Conceptually, this is how quevee is used:
 
 ```yaml
 - name: Collect quality artifacts
-  uses: anotherdaniel/queve@v0.1
+  uses: anotherdaniel/quevee@v0.1
   with:
     artifacts_readme: <readme-url>
     artifacts_requirements: <req-url1>,<req-url2>
@@ -58,7 +58,7 @@ This invocation will generate the following manifest structure:
 
 ## Realistic example
 
-A more complete example, applied to the queve repository:
+A more complete example, applied to the quevee repository:
 
 ```yaml
 jobs:
@@ -95,8 +95,8 @@ jobs:
 
       # Collection quality artifacts
       - name: Collect quality artifacts
-        uses: anotherdaniel/queve@v0.1
-        id: queve
+        uses: anotherdaniel/quevee@v0.1
+        id: quevee
         with:
           release_url: ${{ steps.create_release.outputs.url }}
           artifacts_readme: ${{ steps.upload_readme.outputs.browser_download_url }}
@@ -106,33 +106,33 @@ jobs:
         id: upload_manifest
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ steps.queve.outputs.manifest_file }}
+          file: ${{ steps.quevee.outputs.manifest_file }}
           tag: ${{ github.ref }}
       - name: Store quality manifest as workflow artifact
         uses: actions/upload-artifact@v4
         id: store_manifest
         with:
           name: quality-artifacts-manifest
-          path: ${{ steps.queve.outputs.manifest_file }}
+          path: ${{ steps.quevee.outputs.manifest_file }}
 ````
 
-This invocation will generate the following manifest structure (test run on the queve repository):
+This invocation will generate the following manifest structure (test run on the quevee repository):
 
 ```toml
 [metadata]
-repo-url = "https://github.com/AnotherDaniel/queve"
+repo-url = "https://github.com/AnotherDaniel/quevee"
 created = "Sat Mar  9 18:20:29 UTC 2024"
-by-action = "queve"
+by-action = "quevee"
 project = "AnotherDaniel"
-repository = "queve"
+repository = "quevee"
 ref-tag = "v0.1.20"
 git-hash = "22a0af5f8acb723801c85d5a8871019f5ff6f7ec"
-release-url = "https://github.com/AnotherDaniel/queve/releases/tag/v0.1.20"
+release-url = "https://github.com/AnotherDaniel/quevee/releases/tag/v0.1.20"
 
 [requirements]
-1 = "https://github.com/AnotherDaniel/queve/releases/download/v0.1.20/LICENSE"
+1 = "https://github.com/AnotherDaniel/quevee/releases/download/v0.1.20/LICENSE"
 2 = "https://yet.another.org/example/artifact.bz2"
 
 [readme]
-1 = "https://github.com/AnotherDaniel/queve/releases/download/v0.1.20/README.md"
+1 = "https://github.com/AnotherDaniel/quevee/releases/download/v0.1.20/README.md"
 ```
