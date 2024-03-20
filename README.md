@@ -32,7 +32,7 @@ Process artifacts manifest file name.
 
 ## Simple example
 
-Conceptually, this is how queve is used: 
+Conceptually, this is how queve is used:
 
 ```yaml
 - name: Collect quality artifacts
