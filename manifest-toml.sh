@@ -72,6 +72,9 @@ for var in $(env | grep "^INPUT_" | cut -d= -f1); do
         "INPUT_ARTIFACTS_DOCUMENTATION")
             generate_toml_section "documentation" "$value" >> "$OUTPUT"
             ;;
+        "INPUT_ARTIFACTS_LICENSE")
+            generate_toml_section "licensing" "$value" >> "$OUTPUT"
+            ;;
         "INPUT_ARTIFACTS_README")
             generate_toml_section "readme" "$value" >> "$OUTPUT"
             ;;
