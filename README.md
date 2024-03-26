@@ -12,6 +12,10 @@ URL of the release this manifest refers to.
 
 Comma-separated list of URLs of documentation artifacts.
 
+### `artifacts_licensing`
+
+Comma-separated list of URLs of licensing information.
+
 ### `artifacts_readme`
 
 Comma-separated list of URLs of readme files.
