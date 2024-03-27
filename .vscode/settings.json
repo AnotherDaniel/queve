@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "schema/action-schema.json": "action.yml"
+    }
+}
