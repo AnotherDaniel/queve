@@ -90,4 +90,4 @@ for var in $(env | grep "^INPUT_" | cut -d= -f1); do
 done
 
 # Pass name of generated file as output
-echo "manifest_file=\"$OUTPUT\"" >>$GITHUB_OUTPUT
+echo "manifest_file=$OUTPUT" >>$GITHUB_OUTPUT
