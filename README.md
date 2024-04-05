@@ -52,12 +52,14 @@ This invocation will generate the following manifest structure:
 [metadata]
 <repository and release-specific information>
 
-[readme]
-1 = "readme-url"
+readme = [
+    "readme-url",
+]
 
-[requirements]
-1 = "req-url1"
-2 = "req-url2"
+requirements = [
+    "req-url1", 
+    "req-url2",
+]
 ```
 
 ## Realistic example
@@ -133,10 +135,12 @@ ref-tag = "v0.1.20"
 git-hash = "22a0af5f8acb723801c85d5a8871019f5ff6f7ec"
 release-url = "https://github.com/AnotherDaniel/quevee/releases/tag/v0.1.20"
 
-[requirements]
-1 = "https://github.com/AnotherDaniel/quevee/releases/download/v0.1.20/LICENSE"
-2 = "https://yet.another.org/example/artifact.bz2"
+requirements = [
+    "https://github.com/AnotherDaniel/quevee/releases/download/v0.1.20/LICENSE",
+    "https://yet.another.org/example/artifact.bz2",
+]
 
-[readme]
-1 = "https://github.com/AnotherDaniel/quevee/releases/download/v0.1.20/README.md"
+readme = [
+    "https://github.com/AnotherDaniel/quevee/releases/download/v0.1.20/README.md",
+]    
 ```

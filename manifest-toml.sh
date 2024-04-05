@@ -29,20 +29,19 @@ generate_toml_section() {
     local section="$1"
     local entries="$2"
     local temp_output=""
-    
-    IFS=',' read -r -a array <<< "$entries"
-    local counter=1
-    
+
+    IFS=',' read -r -a array <<<"$entries"
+
     if [ ${#array[@]} -gt 0 ]; then
         for element in "${array[@]}"; do
             validate_url $element
-            temp_output+="$counter = \"$element\""$'\n'
-            ((counter++))
+            temp_output+=$'\n'"    \"$element\","
         done
 
         cat <<EOF
-[$section]
-$temp_output
+$section = [$temp_output
+]
+
 EOF
     fi
 }
@@ -62,33 +61,33 @@ validate_url() {
 OUTPUT="manifest.toml"
 
 # Write header section
-generate_toml_header >> "$OUTPUT"
+generate_toml_header >>"$OUTPUT"
 
 # Write artifact sections
 for var in $(env | grep "^INPUT_" | cut -d= -f1); do
     value="${!var}"
 
     case "$var" in
-        "INPUT_ARTIFACTS_DOCUMENTATION")
-            generate_toml_section "documentation" "$value" >> "$OUTPUT"
-            ;;
-        "INPUT_ARTIFACTS_LICENSE")
-            generate_toml_section "licensing" "$value" >> "$OUTPUT"
-            ;;
-        "INPUT_ARTIFACTS_README")
-            generate_toml_section "readme" "$value" >> "$OUTPUT"
-            ;;
-        "INPUT_ARTIFACTS_REQUIREMENTS")
-            generate_toml_section "requirements" "$value" >> "$OUTPUT"
-            ;;
-        "INPUT_ARTIFACTS_TESTING")
-            generate_toml_section "testing" "$value" >> "$OUTPUT"
-            ;;
-        *)
-            echo "Unknown artifact type ${var#INPUT_ARTIFACTS_}"
-            ;;
+    "INPUT_ARTIFACTS_DOCUMENTATION")
+        generate_toml_section "documentation" "$value" >>"$OUTPUT"
+        ;;
+    "INPUT_ARTIFACTS_LICENSE")
+        generate_toml_section "licensing" "$value" >>"$OUTPUT"
+        ;;
+    "INPUT_ARTIFACTS_README")
+        generate_toml_section "readme" "$value" >>"$OUTPUT"
+        ;;
+    "INPUT_ARTIFACTS_REQUIREMENTS")
+        generate_toml_section "requirements" "$value" >>"$OUTPUT"
+        ;;
+    "INPUT_ARTIFACTS_TESTING")
+        generate_toml_section "testing" "$value" >>"$OUTPUT"
+        ;;
+    *)
+        echo "Unknown artifact type ${var#INPUT_ARTIFACTS_}"
+        ;;
     esac
 done
 
 # Pass name of generated file as output
-echo "manifest_file=$OUTPUT" >> $GITHUB_OUTPUT
+echo "manifest_file=\"$OUTPUT\"" >>$GITHUB_OUTPUT
